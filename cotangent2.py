@@ -2,7 +2,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 from matplot_fmt_pi import MultiplePi
 
-fig, ax = plt.subplots()
+fig, ax = plt.subplots()        # creates a figure and one subplot
 x = np.linspace(-2 * np.pi, 2 * np.pi, 1000)
 y = 1/np.tan(x)
 y[np.abs(np.sin(x)) <= np.abs(np.sin(x[1]-x[0]))] = np.nan
@@ -14,9 +14,10 @@ ax.grid(True)
 ax.axhline(0, color='black', lw=.75)
 ax.axvline(0, color='black', lw=.75)
 ax.set_title("Trigonometric Functions")
-ax.legend(frameon=False)
+ax.legend(frameon=False)    # remove frame legend frame
+# axis formatting
 ax.set_xlim(-2 * np.pi, 2 * np.pi)
-pi_manager = MultiplePi(8)
+pi_manager = MultiplePi(8)          # number= ticks between 0 - pi
 ax.xaxis.set_major_locator(pi_manager.locator())
 ax.xaxis.set_major_formatter(pi_manager.formatter())
 plt.ylim(top=10)  # y axis limit values
@@ -24,4 +25,6 @@ plt.ylim(bottom=-10)
 y_ticks = np.arange(-10, 10, 1)
 plt.yticks(y_ticks)
 fig
+plt.tight_layout()
+plt.savefig("./cotangent_graph.png", dpi=120)
 plt.show()
